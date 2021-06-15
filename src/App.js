@@ -18,47 +18,72 @@ import Vampires from './components/vamp-m5/Vampires'
 
 class App extends Component {
   state = {
-    user: '',
-    vampires: {}
+    user:'',
+    vampires: []
   }
 
   componentDidMount() {
-    firebase.auth().onAuthStateChanged(user =>  {
-      if(user){
-        console.log(user)
-          this.handleUserLogin({ user })
-      } else {
-        console.log('boom!!!! user ??')
-      }
-    })
+    this.setState({user: '', vampires: {}})
+
+    if(this.state.user === ''){
+      firebase.auth().onAuthStateChanged(user =>  {
+        if(user){
+            this.handleUserLogin({ user })
+            this.setVampires({user})
+        } else {
+          console.log('boom!!!! user ??')
+        }
+      })
+    }
   }
- 
-  handleUserLogin = async authData => {
-    this.setState({user: authData.user.uid})
-    this.ref = base.syncState(`/${authData.user.uid}/vampires`, {
-      context: this,
-      state: 'vampires'
-    }) //OUVRE LA CONNEXION
-    // console.log(this.state.vampires)
-    // console.log(this.state.user)
-  }
+
   componentWillUnmount () {
     base.removeBinding(this.ref) //FERME LA CONNEXION
   }
 
+
+  setVampires = async (authData) => {
+    console.log(this.state.user)
+    await base.fetch(`/${authData.user.uid}/vampires`, { context: this })
+    .then(data => {
+      console.log(data)
+      let vampires = this.state.vampires;
+      vampires = {data}
+      this.setState({vampires})
+    })
+    
+
+
+  }
+
+  handleUserLogin = async authData => {
+    this.setState({user: authData.user.uid})
+
+  }
+
   handleUserLogout = event => {
     event.preventDefault()
-    console.log('Logout')
     firebaseApp.auth().signOut().then((user, error) => {
       if(error){
         alert('Boom !')
       }
         this.setState({ user: null })
-      })
-    }
+    })
+  }
+
+  handleAddNewVampire = vampire => {
+    const vampires = { ...this.state.vampires }
+    vampires[`vampM5-${Date.now()}`] = vampire
+    this.setState({ vampires })
+    this.ref = base.syncState(`/${this.state.user}/vampires`, {
+      context: this,
+      state: 'vampires'
+  })
+
+}
 
   render () {
- 
+
     if(!this.state.user) {
       return <Login handleUserLogin={this.handleUserLogin} />
     }
@@ -66,7 +91,7 @@ class App extends Component {
     return (
       <Container id='main'>
         <Logout handleUserLogout={this.handleUserLogout} />
-        <Vampires user={this.state.user} vampires={this.state.vampires} />
+        <Vampires user={this.state.user} vampires={this.state.vampires} handleAddNewVampire={this.handleAddNewVampire} />
       </Container>
     )
   }

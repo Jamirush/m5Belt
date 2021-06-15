@@ -32,16 +32,16 @@ html > body #logoutOut-button {
   margin-top: 1rem;
 }
 
-#addStyle {
+#add-vapire-m5 {
   color: #0b1618;
   background-color: #EEF0F2;
 }
 
-#addItem .form-group {
+#add-vapire-m5 .form-group {
   margin-bottom: 10px;
 }
 
-#addItem .form-group .form-control {
+#add-vapire-m5 .form-group .form-control {
   font-size: smaller;
   background-color: #EEF0F2;
   border: none;
@@ -49,11 +49,11 @@ html > body #logoutOut-button {
   border-radius: 0%;
 }
 
-#addItem .form-group input {
+#add-vapire-m5 .form-group input {
   display: inline-block;
 }
 
-#addItem .form-group #generation {
+#add-vapire-m5 .form-group #generation {
   background-color: #e0e3e7;
 }
 
