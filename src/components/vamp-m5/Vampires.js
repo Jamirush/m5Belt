@@ -7,18 +7,22 @@ class Vampires extends Component {
     state = {  
         addNewVampire: false
     }
-    
+
+    handleShowAddVampire = () => this.setState({ addNewVampire: true })
 
     
     render () {
-        if(this.state.addNewVampire){
-            <NewVampire />
+        if(this.state.addNewVampire){ 
+            return(
+                <NewVampire 
+                    handleAddNewVampire = {this.props.handleAddNewVampire}
+                />
+            )
         }
         return(
-                
             <ShowVampireCards 
                 vampires={this.props.vampires}
-                handleAddVampire = {this.handleAddVampire}
+                handleAddVampire = {this.handleShowAddVampire}
             />
         )
     }
