@@ -33,6 +33,7 @@ html > body #logoutOut-button {
 }
 
 #add-vapire-m5 {
+  padding: 45px;
   color: #0b1618;
   background-color: #EEF0F2;
 }
@@ -57,6 +58,20 @@ html > body #logoutOut-button {
   background-color: #e0e3e7;
 }
 
+#add-vapire-m5 .skill-input {
+  margin: 0 !important;
+  padding-bottom: 0.5rem !important;
+}
+
+#add-vapire-m5 .skill-input [id^="specialisation"] {
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+.bg-readonly {
+  background-color: #56817f;
+}
+
 .m5-circle {
   width: .7em;
   height: .9rem;
@@ -78,7 +93,7 @@ html > body #logoutOut-button {
 
 .dot-obtain {
   border: 1px solid #0b1618;
-  background-color: #edf5f7;
+  background-color: #285057;
 }
 
 .dot-check {
@@ -92,5 +107,9 @@ html > body #logoutOut-button {
 .m5-bb {
   border-bottom: #611F43 solid 1px;
   margin-bottom: 1rem;
+}
+
+.b-dotted {
+  border-bottom: #611F43 dotted 1px;
 }
 /*# sourceMappingURL=App.css.map */

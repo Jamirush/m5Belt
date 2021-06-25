@@ -5,8 +5,6 @@ import  {Form, Col} from 'react-bootstrap';
 class Characteristic extends Component {
 
     render () {
-        
-
         return (
             <Col  md={4}>
                 <Form.Group className="mb-3" controlId={this.props.details.id} >

@@ -45,6 +45,7 @@ html > body {
 }
 
 #add-vapire-m5 {
+    padding: 45px;
     color: $M5-dark-hex;
     background-color: $M5-light-hex;
 
@@ -64,10 +65,25 @@ html > body {
         #generation {
             background-color: darken($M5-light-hex, 5);
         }
+
     }    
+    
+    .skill-input{
+
+        margin: 0 !important;  
+        padding-bottom:   0.5rem !important;  
+
+        [id^="specialisation"]{
+            padding: 0 !important;      
+            border: 0 !important;
+        }
+
+    }
 }
 
-
+.bg-readonly{
+    background-color: $M5-midd-hex;
+}
 
 .m5-circle {
     width: .7em;
@@ -90,7 +106,7 @@ html > body {
 
 .dot-obtain {
     border: 1px solid $M5-dark-hex;
-    background-color: lighten($M5-dark-hex, 88%);
+    background-color: lighten($M5-dark-hex, 18%);
 }
 
 .dot-check{
@@ -104,4 +120,8 @@ html > body {
 .m5-bb {
     border-bottom: $M5-push-dark-hex solid 1px;
     margin-bottom: 1rem;
+}
+
+.b-dotted{
+    border-bottom: $M5-push-dark-hex dotted 1px;
 }

@@ -28,8 +28,8 @@ class Login extends Component {
       <Row className='justify-content-md-center mt-5'>
           <Col md='6'  className='text-center'>
             <Button onClick={this.authenticate} className=' facebook-button' variant="outline-primary" size='sm' type='submit'>
-              <FontAwesomeIcon className='mr-1' style={{fontSize: 16}} icon={['fab', 'facebook']} />
-              Connexion avec facebook 
+              <FontAwesomeIcon className='mx-2' style={{fontSize: 16}} icon={['fab', 'facebook']} />
+               Connexion avec facebook
             </Button>
           </Col> 
         </Row>
