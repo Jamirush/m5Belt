@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import  { Col, Card} from 'react-bootstrap';
 class VampCard extends Component {
     render () {
-        const name = this.props.details
+        const name = this.props.details.name
         return (
             <Col  md={2}>
                 <Card id='name' className='myVampire' onClick={this.props.handleAddVampire}>

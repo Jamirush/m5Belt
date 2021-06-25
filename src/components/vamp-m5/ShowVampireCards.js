@@ -14,8 +14,10 @@ library.add(fab, faPlusCircle)
 class ShowVampireCards extends Component {
 
     render () {
-        const vampires = Object.keys(this.props.vampires)
-        .map(key => <VampCard key = {key} details={this.props.vampires[key]} />)
+        
+          const vampireList = this.props.vampires
+          const vampires = Object.keys(vampireList)
+          .map(key => <VampCard key = {key} details={vampireList[key]} /> )
 
         return(
             <Row id='vampires-list'>
@@ -28,7 +30,7 @@ class ShowVampireCards extends Component {
                          </Card.Body>
                     </Card>
                 </Col>
-                {vampires}
+                  {vampires}
             </Row>
         )
     }

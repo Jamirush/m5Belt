@@ -23,42 +23,36 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.setState({user: '', vampires: {}})
 
     if(this.state.user === ''){
       firebase.auth().onAuthStateChanged(user =>  {
         if(user){
             this.handleUserLogin({ user })
-            this.setVampires({user})
+            this.syncVampires()
         } else {
-          console.log('boom!!!! user ??')
+          console.log('error')
         }
       })
+    } else {
+      
+      this.syncVampires()
     }
+
   }
 
   componentWillUnmount () {
     base.removeBinding(this.ref) //FERME LA CONNEXION
   }
 
-
-  setVampires = async (authData) => {
-    console.log(this.state.user)
-    await base.fetch(`/${authData.user.uid}/vampires`, { context: this })
-    .then(data => {
-      console.log(data)
-      let vampires = this.state.vampires;
-      vampires = {data}
-      this.setState({vampires})
-    })
-    
-
-
+  syncVampires = () =>{
+    this.ref = base.syncState(`/${this.state.user}/vampires`, {
+      context: this,
+      state: 'vampires'
+    }) //OUVRE LA CONNEXION
   }
 
   handleUserLogin = async authData => {
     this.setState({user: authData.user.uid})
-
   }
 
   handleUserLogout = event => {
@@ -75,12 +69,8 @@ class App extends Component {
     const vampires = { ...this.state.vampires }
     vampires[`vampM5-${Date.now()}`] = vampire
     this.setState({ vampires })
-    this.ref = base.syncState(`/${this.state.user}/vampires`, {
-      context: this,
-      state: 'vampires'
-  })
 
-}
+  }
 
   render () {
 
@@ -91,7 +81,11 @@ class App extends Component {
     return (
       <Container id='main'>
         <Logout handleUserLogout={this.handleUserLogout} />
-        <Vampires user={this.state.user} vampires={this.state.vampires} handleAddNewVampire={this.handleAddNewVampire} />
+        <Vampires 
+          user={this.state.user} 
+          vampires={this.state.vampires} 
+          handleAddNewVampire={this.handleAddNewVampire} 
+        />
       </Container>
     )
   }
