@@ -65,7 +65,7 @@ class App extends Component {
     })
   }
 
-  handleAddNewVampire = vampire => {
+  handleAddVampire = vampire => {
     const vampires = { ...this.state.vampires }
     vampires[`vampM5-${Date.now()}`] = vampire
     this.setState({ vampires })
@@ -84,7 +84,7 @@ class App extends Component {
         <Vampires 
           user={this.state.user} 
           vampires={this.state.vampires} 
-          handleAddNewVampire={this.handleAddNewVampire} 
+          handleAddVampire={this.handleAddVampire} 
         />
       </Container>
     )

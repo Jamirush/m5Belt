@@ -249,6 +249,7 @@ class NewVampire extends Component {
             sante: {id: 'sante', name:'Santé', value: 5},
         },
         vampire:{
+            creationIsEnd: false,
             clan:'brujah',
             ambition: '',
             chronique: '',
@@ -322,7 +323,7 @@ class NewVampire extends Component {
             technologieSpe: '',
             vigilanceSpe: '',
 
-            vonlonte: 2,
+            volonte: 2,
             sante: 5,
 
             animalisme: 0,
@@ -339,6 +340,13 @@ class NewVampire extends Component {
      
         }
     }
+
+    componentDidMount(){
+        console.log('NEW')
+        console.log(this.props.vampire)
+        this.setState({vampire: this.props.vampire})
+    }
+
     handleClanChange = event => {
 
         const disciplines = {...this.state.disciplines}
@@ -441,7 +449,6 @@ class NewVampire extends Component {
 
     handleSkillsPhysiqueChange = event => {
         const { id } = event.target  
-        console.log(id)
         const infoArray = this.extractId(id)
         const name = infoArray[1]
         const value = infoArray[2] 
@@ -568,7 +575,6 @@ class NewVampire extends Component {
     }
 
     newDotValue = (item, nextValue, min) => {
-        console.log(item)
         const minValue = min === undefined ? this.state.rules.minValue :  min
         const maxValue = this.state.rules.maxValue
         const vampireItemValue = this.state.vampire[item.id] 
@@ -719,7 +725,6 @@ class NewVampire extends Component {
         let count = 0
         skillsArray.forEach(skill => {
             if(skill.id !== 'artisanat' && skill.id !== 'performance' && skill.id !== 'erudition' && skill.id !== 'sciences' && skill.specialisation !== ''){
-                console.log(skill.id)
                 count++
             }          
             else if(skill.id === 'artisanat' && needArtisanat && skill.specialisation !== '') {
@@ -800,8 +805,12 @@ class NewVampire extends Component {
     
     handleSubmitNewVampire = event =>{
         const vampire = {...this.state.vampire}
-        this.props.handleAddNewVampire(vampire)
+        this.props.handleAddVampire(vampire)
         this.resetFrom()
+    }
+
+    loadVampire = () => {
+        
     }
 
     render () {

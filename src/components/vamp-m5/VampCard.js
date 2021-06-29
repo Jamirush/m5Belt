@@ -6,9 +6,9 @@ class VampCard extends Component {
         const name = this.props.details.name
         return (
             <Col  md={2}>
-                <Card id='name' className='myVampire' onClick={this.props.handleAddVampire}>
-                    <Card.Body>
-                        <Card.Text className='text-center'>
+                <Card className='myVampire' >
+                    <Card.Body id={this.props.id} onClick={this.props.handleContinueAddVampire}>
+                        <Card.Text className='text-center' id={this.props.id} onClick={this.props.handleContinueAddVampire} >
                             {name}
                         </Card.Text>
                     </Card.Body>

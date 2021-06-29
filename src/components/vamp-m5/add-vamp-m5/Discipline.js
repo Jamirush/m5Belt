@@ -3,7 +3,6 @@ import React from 'react'
 import  {Row, Col } from 'react-bootstrap';
 
 const Discipline = ({details, handleDisciplineChange, isSangClair}) => {
-    console.log(isSangClair)
     return (
         <Col md={4}>
             <Row>

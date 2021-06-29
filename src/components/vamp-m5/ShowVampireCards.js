@@ -14,15 +14,16 @@ library.add(fab, faPlusCircle)
 class ShowVampireCards extends Component {
 
     render () {
+        console.log(this.props.vampires)
         
           const vampireList = this.props.vampires
           const vampires = Object.keys(vampireList)
-          .map(key => <VampCard key = {key} details={vampireList[key]} /> )
+          .map(key => <VampCard key = {key} id = {key} details={vampireList[key]} handleContinueAddVampire={this.props.handleContinueAddVampire}/> )
 
         return(
             <Row id='vampires-list'>
                 <Col md={2}>
-                    <Card id='new-vampire' onClick={this.props.handleAddVampire}>
+                    <Card id='new-vampire' onClick={this.props.handleAddNewVampire}>
                         <Card.Body>
                             <Card.Text className='text-center'>
                                 <FontAwesomeIcon icon={faPlusCircle} />

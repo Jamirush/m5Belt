@@ -23,6 +23,7 @@ html > body #logoutOut-button {
 #vampires-list .myVampire {
   color: #56817f;
   border: solid 1px #56817f;
+  z-index: 2;
 }
 
 #vampires-list .card {
